@@ -1,34 +1,10 @@
-package Constraints;
-
 import java.awt.*;
 
 public class MenuCns extends GridBagConstraints {
 
-    public void title_lbl() {
-        gridx = 1;
-        gridy = 1;
-        gridwidth = 5;
-        fill = HORIZONTAL;
-        weightx = 0.5;
-        weighty = 0;
-        anchor = PAGE_START;
-        insets = new Insets(5, 5, 0, 0);
-    }
-
-    public void intro_lbl() {
-        gridx = 1;
-        gridy = 2;
-        gridwidth = 5;
-        fill = HORIZONTAL;
-        weightx = 0.5;
-        weighty = 0;
-        anchor = PAGE_START;
-        insets = new Insets(5, 5, 0, 0);
-    }
-
     public void answers_lbl() {
         gridx = 1;
-        gridy = 3;
+        gridy = 1;
         gridwidth = 1;
         fill = HORIZONTAL;
         weightx = 0.5;
@@ -39,7 +15,7 @@ public class MenuCns extends GridBagConstraints {
 
     public void faves_lbl() {
         gridx = 2;
-        gridy = 3;
+        gridy = 1;
         gridwidth = 1;
         fill = HORIZONTAL;
         weightx = 0.5;
@@ -50,7 +26,7 @@ public class MenuCns extends GridBagConstraints {
 
     public void add_faves_btn() {
         gridx = 3;
-        gridy = 3;
+        gridy = 1;
         gridwidth = 1;
         fill = NONE;
         weightx = 0;
@@ -61,7 +37,7 @@ public class MenuCns extends GridBagConstraints {
 
     public void remove_faves_btn() {
         gridx = 4;
-        gridy = 3;
+        gridy = 1;
         gridwidth = 1;
         fill = NONE;
         weightx = 0;
@@ -72,7 +48,7 @@ public class MenuCns extends GridBagConstraints {
 
     public void learn_lbl() {
         gridx = 5;
-        gridy = 3;
+        gridy = 1;
         gridwidth = 1;
         fill = HORIZONTAL;
         weightx = 0.5;
@@ -83,7 +59,7 @@ public class MenuCns extends GridBagConstraints {
 
     public void answers_list() {
         gridx = 1;
-        gridy = 4;
+        gridy = 2;
         gridwidth = 1;
         fill = BOTH;
         weightx = 1;
@@ -94,7 +70,7 @@ public class MenuCns extends GridBagConstraints {
 
     public void faves_list() {
         gridx = 2;
-        gridy = 4;
+        gridy = 2;
         gridwidth = 3;
         fill = BOTH;
         weightx = 1;
@@ -105,7 +81,7 @@ public class MenuCns extends GridBagConstraints {
 
     public void learn_list() {
         gridx = 5;
-        gridy = 4;
+        gridy = 2;
         gridwidth = 1;
         fill = BOTH;
         weightx = 1;
@@ -116,7 +92,7 @@ public class MenuCns extends GridBagConstraints {
 
     public void go_btn() {
         gridx = 1;
-        gridy = 5;
+        gridy = 3;
         gridwidth = 5;
         fill = BOTH;
         weightx = 0.5;

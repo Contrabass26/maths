@@ -1,5 +1,3 @@
-import Constraints.MenuCns;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -34,15 +32,6 @@ public class Menu extends JPanel implements ActionListener, ListSelectionListene
         // Set layout
         setLayout(new GridBagLayout());
         MenuCns c = new MenuCns();
-        // Title label
-        c.title_lbl();
-        JLabel title_lbl = new JLabel("Welcome to " + Constants.TITLE + "!");
-        title_lbl.setFont(title_lbl.getFont().deriveFont(32.0f));
-        add(title_lbl, c);
-        // Introduction label
-        c.intro_lbl();
-        JLabel intro_lbl = new JLabel(Constants.INTRO_TEXT[ID]);
-        add(intro_lbl, c);
         // Answers label
         c.answers_lbl();
         JLabel answers_lbl = new JLabel("Calculators:");

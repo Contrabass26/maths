@@ -1,4 +1,4 @@
-import Constraints.AveragesCns;
+import AnswerConstraints.AveragesCns;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -10,31 +10,21 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.stream.DoubleStream;
 
-public class Averages extends JPanel implements ActionListener, DocumentListener {
+public class AveragesAns extends JPanel implements ActionListener, DocumentListener {
 
     int ID;
     JTextField input_box = new JTextField(); // Input box
     JLabel output_box = new JLabel("Error"); // Output box
-    JButton back_btn = new JButton("<-- Back to menu"); // Back button
     JButton[] type_btn = new JButton[4]; // Average selector buttons
     int selected_average = 0;
 
-    public Averages(int id) {
+    public AveragesAns(int id) {
         super();
         // Set id
         ID = id;
         // Set layout
         setLayout(new GridBagLayout());
         AveragesCns c = new AveragesCns();
-        // Title label
-        c.title_lbl();
-        JLabel title_lbl = new JLabel(Constants.IDENTIFIERS[ID]);
-        title_lbl.setFont(title_lbl.getFont().deriveFont(32.0f));
-        add(title_lbl, c);
-        // Introduction label
-        c.intro_lbl();
-        JLabel intro_lbl = new JLabel(Constants.INTRO_TEXT[ID]);
-        add(intro_lbl, c);
         // Input box
         c.input_box();
         input_box.getDocument().addDocumentListener(this);
@@ -52,10 +42,6 @@ public class Averages extends JPanel implements ActionListener, DocumentListener
         // Output box
         c.output_box();
         add(output_box, c);
-        // Back button
-        c.back_btn();
-        back_btn.addActionListener(this);
-        add(back_btn, c);
     }
 
     public void update() {
@@ -125,16 +111,12 @@ public class Averages extends JPanel implements ActionListener, DocumentListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == back_btn) {
-            Main.switch_panel(Constants.IDENTIFIERS[0]);
-        } else {
-            for (int i = 0; i < type_btn.length; i++) {
-                if (type_btn[i] == e.getSource()) {
-                    type_btn[i].setBackground(Constants.SELECTED);
-                    selected_average = i;
-                    update();
-                } else type_btn[i].setBackground(Constants.DESELECTED);
-            }
+        for (int i = 0; i < type_btn.length; i++) {
+            if (type_btn[i] == e.getSource()) {
+                type_btn[i].setBackground(Constants.SELECTED);
+                selected_average = i;
+                update();
+            } else type_btn[i].setBackground(Constants.DESELECTED);
         }
     }
 

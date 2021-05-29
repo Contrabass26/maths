@@ -9,39 +9,55 @@ import java.util.Arrays;
 public class Main extends JFrame {
 
     // Panels
+    static JPanel top_pnl = new TopPanel();
     static JPanel outer_pnl = new JPanel();
     static Menu menu_pnl = new Menu(0);
-    static Averages averages_pnl = new Averages(1);
-    static Binary binary_pnl = new Binary(2);
-    static Clocks clocks_pnl = new Clocks(3);
-    static Triangles triangles_pnl = new Triangles(4);
+    static AveragesAns averages_ans_pnl = new AveragesAns(1);
+    static BinaryAns binary_ans_pnl = new BinaryAns(2);
+    static ClocksAns clocks_ans_pnl = new ClocksAns(3);
+    static TrianglesAns triangles_ans_pnl = new TrianglesAns(4);
+    static BoxPlotsAns box_plots_ans_pnl = new BoxPlotsAns(5);
 
     public Main() {
         // Window properties
         super("Maths");
         setSize(Constants.WN_SIZE[0], Constants.WN_SIZE[1]);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        // Identifiers
-        Constants.IDENTIFIERS = Constants.update_ids();
         // Set up layout
+        setLayout(new GridBagLayout());
+        MainCns c = new MainCns();
+        c.top_pnl();
+        add(top_pnl, c);
+        c.outer_pnl();
+        add(outer_pnl, c);
+        // Outer panel layout
         CardLayout cards = new CardLayout();
         outer_pnl.setLayout(cards);
         // Set up cards
         outer_pnl.add(menu_pnl, Constants.IDENTIFIERS[0]);
-        outer_pnl.add(averages_pnl, Constants.IDENTIFIERS[1]);
-        outer_pnl.add(binary_pnl, Constants.IDENTIFIERS[2]);
-        outer_pnl.add(clocks_pnl, Constants.IDENTIFIERS[3]);
-        outer_pnl.add(triangles_pnl, Constants.IDENTIFIERS[4]);
+        outer_pnl.add(averages_ans_pnl, Constants.IDENTIFIERS[1]);
+        outer_pnl.add(binary_ans_pnl, Constants.IDENTIFIERS[2]);
+        outer_pnl.add(clocks_ans_pnl, Constants.IDENTIFIERS[3]);
+        outer_pnl.add(triangles_ans_pnl, Constants.IDENTIFIERS[4]);
+        outer_pnl.add(box_plots_ans_pnl, Constants.IDENTIFIERS[5]);
         // Bring menu panel to front
-        cards.show(outer_pnl, Constants.IDENTIFIERS[0]);
+        switch_panel(0);
         // Finalise setup
-        add(outer_pnl);
         setVisible(true);
     }
 
+    public static void switch_panel(int id) {
+        CardLayout c = (CardLayout) outer_pnl.getLayout();
+        c.show(outer_pnl, Constants.IDENTIFIERS[id]);
+        TopPanel.set_title(Constants.IDENTIFIERS[id]);
+        TopPanel.set_intro(Constants.INTRO_TEXT[id]);
+    }
+
     public static void switch_panel(String id) {
-        CardLayout c = (CardLayout) (outer_pnl.getLayout());
+        CardLayout c = (CardLayout) outer_pnl.getLayout();
         c.show(outer_pnl, id);
+        TopPanel.set_title(id);
+        TopPanel.set_intro(Constants.INTRO_TEXT_MAP.get(id));
     }
     
     public static String[] read_faves() {

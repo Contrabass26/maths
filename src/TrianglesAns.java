@@ -1,19 +1,18 @@
-import Constraints.TrianglesCns;
+import AnswerConstraints.TrianglesCns;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Triangles extends JPanel implements ActionListener {
+public class TrianglesAns extends JPanel implements ActionListener {
 
     int ID;
     JTextField[] entries = new JTextField[6]; // Side and angle entries
-    JButton back_btn = new JButton("<-- Back to menu"); // Back button
     JButton go_btn = new JButton("Calculate"); // Go button
-    TrianglesDrawing draw_pnl = new TrianglesDrawing(); // Drawing panel
+    TrianglesAnsDrawing draw_pnl = new TrianglesAnsDrawing(); // Drawing panel
 
-    public Triangles(int id) {
+    public TrianglesAns(int id) {
         super();
         // Set id
         ID = id;
@@ -23,15 +22,6 @@ public class Triangles extends JPanel implements ActionListener {
         JPanel bottom_pnl = new JPanel(new GridLayout(1, 2));
         JPanel main_pnl = new JPanel(new GridBagLayout());
         TrianglesCns c = new TrianglesCns();
-        // Title label
-        c.title_lbl();
-        JLabel title_lbl = new JLabel(Constants.IDENTIFIERS[ID]);
-        title_lbl.setFont(title_lbl.getFont().deriveFont(32.0f));
-        top_pnl.add(title_lbl, c);
-        // Introduction label
-        c.intro_lbl();
-        JLabel intro_lbl = new JLabel(Constants.INTRO_TEXT[ID]);
-        top_pnl.add(intro_lbl, c);
         // Labels and entries
         JLabel[] labels = new JLabel[6];
         String[] names = {"a", "b", "c", "A", "B", "C"};
@@ -47,10 +37,6 @@ public class Triangles extends JPanel implements ActionListener {
         c.go_btn();
         go_btn.addActionListener(this);
         add(go_btn, c);
-        // Back button
-        c.back_btn();
-        back_btn.addActionListener(this);
-        add(back_btn, c);
         // Finalise layout
         bottom_pnl.add(main_pnl);
         bottom_pnl.add(draw_pnl);
@@ -177,12 +163,7 @@ public class Triangles extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == back_btn) {
-            for (int i = 0; i < 6; i++) {
-                entries[i].setText("");
-            }
-            Main.switch_panel(Constants.IDENTIFIERS[0]);
-        } else if (e.getSource() == go_btn) {
+        if (e.getSource() == go_btn) {
             update();
         }
     }

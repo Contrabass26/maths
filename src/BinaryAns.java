@@ -1,4 +1,4 @@
-import Constraints.BinaryCns;
+import AnswerConstraints.BinaryCns;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -7,32 +7,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Binary extends JPanel implements ActionListener, DocumentListener {
+public class BinaryAns extends JPanel implements ActionListener, DocumentListener {
 
     int ID;
-    JButton back_btn = new JButton("<-- Back to menu"); // Back button
     JTextField input_box = new JTextField(); // Input box
     JLabel output_box = new JLabel("0", SwingConstants.CENTER); // Output box
     // Mode switching buttons
     JButton b_to_d_btn = new JButton("Binary to decimal");
     JButton d_to_b_btn = new JButton("Decimal to binary");
 
-    public Binary(int id) {
+    public BinaryAns(int id) {
         super();
         // Set id
         ID = id;
         // Set layout
         setLayout(new GridBagLayout());
         BinaryCns c = new BinaryCns();
-        // Title label
-        c.title_lbl();
-        JLabel title_lbl = new JLabel(Constants.IDENTIFIERS[ID]);
-        title_lbl.setFont(title_lbl.getFont().deriveFont(32.0f));
-        add(title_lbl, c);
-        // Introduction label
-        c.intro_lbl();
-        JLabel intro_lbl = new JLabel(Constants.INTRO_TEXT[ID]);
-        add(intro_lbl, c);
         // Binary to decimal button
         c.b_to_d_btn();
         b_to_d_btn.addActionListener(this);
@@ -51,10 +41,6 @@ public class Binary extends JPanel implements ActionListener, DocumentListener {
         // Output box
         c.output_box();
         add(output_box, c);
-        // Back button
-        c.back_btn();
-        back_btn.addActionListener(this);
-        add(back_btn, c);
     }
 
     public void convert() {
@@ -78,9 +64,6 @@ public class Binary extends JPanel implements ActionListener, DocumentListener {
         } else if (e.getSource() == b_to_d_btn) {
             b_to_d_btn.setBackground(Constants.SELECTED);
             d_to_b_btn.setBackground(Constants.DESELECTED);
-        } else if (e.getSource() == back_btn) {
-            input_box.setText("");
-            Main.switch_panel(Constants.IDENTIFIERS[0]);
         }
     }
 

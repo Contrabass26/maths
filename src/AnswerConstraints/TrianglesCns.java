@@ -1,4 +1,4 @@
-package Constraints;
+package AnswerConstraints;
 
 import java.awt.*;
 
@@ -22,26 +22,6 @@ public class TrianglesCns extends GridBagConstraints {
         weighty = 0.7;
         weightx = 1;
         insets = new Insets(0, 0, 0, 0);
-    }
-
-    public void title_lbl() {
-        gridx = 1;
-        gridy = 1;
-        gridwidth = 1;
-        fill = HORIZONTAL;
-        weightx = 1;
-        weighty = 1;
-        insets = new Insets(0, 5, 0, 0);
-    }
-
-    public void intro_lbl() {
-        gridx = 1;
-        gridy = 2;
-        gridwidth = 2;
-        fill = HORIZONTAL;
-        weightx = 1;
-        weighty = 1;
-        insets = new Insets(0, 5, 0, 0);
     }
 
     public void labels(int index) {
@@ -74,13 +54,4 @@ public class TrianglesCns extends GridBagConstraints {
         insets = new Insets(5, 5, 5, 5);
     }
 
-    public void back_btn() {
-        gridx = 2;
-        gridy = 7;
-        gridwidth = 1;
-        fill = BOTH;
-        weightx = 0.5;
-        weighty = 0.5;
-        insets = new Insets(5, 0, 5, 5);
-    }
 }

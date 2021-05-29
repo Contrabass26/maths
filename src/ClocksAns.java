@@ -1,35 +1,23 @@
-import Constraints.ClocksCns;
+import AnswerConstraints.ClocksCns;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class Clocks extends JPanel implements ActionListener, DocumentListener {
+public class ClocksAns extends JPanel implements DocumentListener {
 
     int ID;
     JTextField input_box = new JTextField(); // Input box
     JLabel output_box = new JLabel("00:00"); // Output label
-    JButton back_btn = new JButton("<-- Back to menu");
 
-    public Clocks(int id) {
+    public ClocksAns(int id) {
         super();
         // Set id
         ID = id;
         // Set layout
         setLayout(new GridBagLayout());
         ClocksCns c = new ClocksCns();
-        // Title label
-        c.title_lbl();
-        JLabel title_lbl = new JLabel(Constants.IDENTIFIERS[ID]);
-        title_lbl.setFont(title_lbl.getFont().deriveFont(32.0f));
-        add(title_lbl, c);
-        // Introduction label
-        c.intro_lbl();
-        JLabel intro_lbl = new JLabel(Constants.INTRO_TEXT[ID]);
-        add(intro_lbl, c);
         // Input box
         c.input_box();
         input_box.getDocument().addDocumentListener(this);
@@ -37,10 +25,6 @@ public class Clocks extends JPanel implements ActionListener, DocumentListener {
         // Output box
         c.output_box();
         add(output_box, c);
-        // Back button
-        c.back_btn();
-        back_btn.addActionListener(this);
-        add(back_btn, c);
     }
 
     public void convert() {
@@ -65,14 +49,6 @@ public class Clocks extends JPanel implements ActionListener, DocumentListener {
             }
         } catch (Exception e) {
             output_box.setText("Error");
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == back_btn) {
-            input_box.setText("");
-            Main.switch_panel(Constants.IDENTIFIERS[0]);
         }
     }
 
