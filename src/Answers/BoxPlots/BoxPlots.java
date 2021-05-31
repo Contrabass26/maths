@@ -1,16 +1,18 @@
+package Answers.BoxPlots;
+
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class BoxPlotsAns extends JPanel implements DocumentListener {
+public class BoxPlots extends JPanel implements DocumentListener {
 
     int ID;
     JTextField data_input = new JTextField(); // Data set text box
-    BoxPlotsAnsDrawing draw_pnl = new BoxPlotsAnsDrawing(); // Drawing panel
+    BoxPlotsDrawing draw_pnl = new BoxPlotsDrawing(); // Drawing panel
 
-    public BoxPlotsAns(int id) {
+    public BoxPlots(int id) {
         super();
         ID = id;
         // Set layout

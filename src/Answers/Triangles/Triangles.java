@@ -1,18 +1,18 @@
-import AnswerConstraints.TrianglesCns;
+package Answers.Triangles;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TrianglesAns extends JPanel implements ActionListener {
+public class Triangles extends JPanel implements ActionListener {
 
     int ID;
     JTextField[] entries = new JTextField[6]; // Side and angle entries
     JButton go_btn = new JButton("Calculate"); // Go button
-    TrianglesAnsDrawing draw_pnl = new TrianglesAnsDrawing(); // Drawing panel
+    TrianglesDrawing draw_pnl = new TrianglesDrawing(); // Drawing panel
 
-    public TrianglesAns(int id) {
+    public Triangles(int id) {
         super();
         // Set id
         ID = id;

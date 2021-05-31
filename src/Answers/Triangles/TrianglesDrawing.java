@@ -1,7 +1,9 @@
+package Answers.Triangles;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class TrianglesAnsDrawing extends JPanel {
+public class TrianglesDrawing extends JPanel {
 
     double A, B, C, a, b, c;
     double[] a_coords, b_coords, c_coords;

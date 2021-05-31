@@ -1,4 +1,6 @@
-import AnswerConstraints.AveragesCns;
+package Answers.Averages;
+
+import Main.Constants;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -10,15 +12,15 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.stream.DoubleStream;
 
-public class AveragesAns extends JPanel implements ActionListener, DocumentListener {
+public class Averages extends JPanel implements ActionListener, DocumentListener {
 
     int ID;
     JTextField input_box = new JTextField(); // Input box
     JLabel output_box = new JLabel("Error"); // Output box
     JButton[] type_btn = new JButton[4]; // Average selector buttons
-    int selected_average = 0;
+    int selected_average = 0; // Selected average type
 
-    public AveragesAns(int id) {
+    public Averages(int id) {
         super();
         // Set id
         ID = id;

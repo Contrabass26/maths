@@ -1,4 +1,4 @@
-package AnswerConstraints;
+package Answers.Triangles;
 
 import java.awt.*;
 

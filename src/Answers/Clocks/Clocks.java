@@ -1,17 +1,17 @@
-import AnswerConstraints.ClocksCns;
+package Answers.Clocks;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 
-public class ClocksAns extends JPanel implements DocumentListener {
+public class Clocks extends JPanel implements DocumentListener {
 
     int ID;
     JTextField input_box = new JTextField(); // Input box
     JLabel output_box = new JLabel("00:00"); // Output label
 
-    public ClocksAns(int id) {
+    public Clocks(int id) {
         super();
         // Set id
         ID = id;

@@ -1,4 +1,4 @@
-package AnswerConstraints;
+package Answers.Binary;
 
 import java.awt.*;
 

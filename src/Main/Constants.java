@@ -1,3 +1,5 @@
+package Main;
+
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +18,7 @@ public class Constants {
             "Triangle calculator",
             "Box plots"
     };
-    public static final String[] learn_options = {
+    public static final String[] questions_options = {
 
     };
     public static String[] faves = Main.read_faves();
@@ -24,11 +26,11 @@ public class Constants {
     public static String[] IDENTIFIERS = update_ids();
 
     public static String[] update_ids() {
-        String[] temp_ids = new String[answer_options.length + faves.length + learn_options.length + 1];
+        String[] temp_ids = new String[answer_options.length + faves.length + questions_options.length + 1];
         temp_ids[0] = "Welcome to " + TITLE;
         System.arraycopy(answer_options, 0, temp_ids, 1, answer_options.length);
         System.arraycopy(faves, 0, temp_ids, answer_options.length, faves.length);
-        System.arraycopy(learn_options, 0, temp_ids, answer_options.length + faves.length, learn_options.length);
+        System.arraycopy(questions_options, 0, temp_ids, answer_options.length + faves.length, questions_options.length);
         return temp_ids;
     }
 

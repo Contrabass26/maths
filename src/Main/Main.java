@@ -1,3 +1,12 @@
+package Main;
+
+import Answers.Averages.*;
+import Answers.Binary.*;
+import Answers.BoxPlots.*;
+import Answers.Clocks.*;
+import Answers.Triangles.*;
+import Menu.Menu;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -8,15 +17,16 @@ import java.util.Arrays;
 
 public class Main extends JFrame {
 
-    // Panels
+    // General panels
     static JPanel top_pnl = new TopPanel();
     static JPanel outer_pnl = new JPanel();
     static Menu menu_pnl = new Menu(0);
-    static AveragesAns averages_ans_pnl = new AveragesAns(1);
-    static BinaryAns binary_ans_pnl = new BinaryAns(2);
-    static ClocksAns clocks_ans_pnl = new ClocksAns(3);
-    static TrianglesAns triangles_ans_pnl = new TrianglesAns(4);
-    static BoxPlotsAns box_plots_ans_pnl = new BoxPlotsAns(5);
+    // Answers panels
+    static Averages averages_ans_pnl = new Averages(1);
+    static Binary binary_ans_pnl = new Binary(2);
+    static Clocks clocks_ans_pnl = new Clocks(3);
+    static Triangles triangles_ans_pnl = new Triangles(4);
+    static BoxPlots box_plots_ans_pnl = new BoxPlots(5);
 
     public Main() {
         // Window properties

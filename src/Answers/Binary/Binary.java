@@ -1,4 +1,6 @@
-import AnswerConstraints.BinaryCns;
+package Answers.Binary;
+
+import Main.Constants;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -7,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BinaryAns extends JPanel implements ActionListener, DocumentListener {
+public class Binary extends JPanel implements ActionListener, DocumentListener {
 
     int ID;
     JTextField input_box = new JTextField(); // Input box
@@ -16,7 +18,7 @@ public class BinaryAns extends JPanel implements ActionListener, DocumentListene
     JButton b_to_d_btn = new JButton("Binary to decimal");
     JButton d_to_b_btn = new JButton("Decimal to binary");
 
-    public BinaryAns(int id) {
+    public Binary(int id) {
         super();
         // Set id
         ID = id;

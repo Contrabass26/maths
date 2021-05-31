@@ -1,10 +1,12 @@
+package Answers.BoxPlots;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class BoxPlotsAnsDrawing extends JPanel {
+public class BoxPlotsDrawing extends JPanel {
 
     List<Integer> data_set = new ArrayList<>();
 

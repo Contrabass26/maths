@@ -1,4 +1,4 @@
-package AnswerConstraints;
+package Answers.Averages;
 
 import java.awt.*;
 

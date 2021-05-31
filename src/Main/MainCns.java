@@ -1,3 +1,5 @@
+package Main;
+
 import java.awt.*;
 
 public class MainCns extends GridBagConstraints {

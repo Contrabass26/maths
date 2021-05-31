@@ -1,3 +1,5 @@
+package Menu;
+
 import java.awt.*;
 
 public class MenuCns extends GridBagConstraints {
@@ -46,7 +48,7 @@ public class MenuCns extends GridBagConstraints {
         insets = new Insets(10, 0, 0, 4);
     }
 
-    public void learn_lbl() {
+    public void questions_lbl() {
         gridx = 5;
         gridy = 1;
         gridwidth = 1;
@@ -79,7 +81,7 @@ public class MenuCns extends GridBagConstraints {
         insets = new Insets(4, 4, 5, 4);
     }
 
-    public void learn_list() {
+    public void questions_list() {
         gridx = 5;
         gridy = 2;
         gridwidth = 1;
