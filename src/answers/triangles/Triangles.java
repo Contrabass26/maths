@@ -1,91 +1,90 @@
-package Answers.Triangles;
+package answers.triangles;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class Triangles extends JPanel implements ActionListener {
+public class Triangles extends JPanel {
 
-    int ID;
-    JTextField[] entries = new JTextField[6]; // Side and angle entries
-    JButton go_btn = new JButton("Calculate"); // Go button
-    TrianglesDrawing draw_pnl = new TrianglesDrawing(); // Drawing panel
+    private final JTextField[] entries = new JTextField[6]; // Side and angle entries
+    private final JButton goBtn = new JButton("Calculate"); // Go button
+    private final TrianglesDrawing panel = new TrianglesDrawing(); // Drawing panel
 
-    public Triangles(int id) {
+    public Triangles() {
         super();
-        // Set id
-        ID = id;
         // Set layout
         setLayout(new GridBagLayout());
-        JPanel top_pnl = new JPanel(new GridBagLayout());
-        JPanel bottom_pnl = new JPanel(new GridLayout(1, 2));
-        JPanel main_pnl = new JPanel(new GridBagLayout());
-        TrianglesCns c = new TrianglesCns();
+        JPanel topPnl = new JPanel(new GridBagLayout());
+        JPanel bottomPnl = new JPanel(new GridLayout(1, 2));
+        JPanel mainPnl = new JPanel(new GridBagLayout());
+        Constraints c = new Constraints();
         // Labels and entries
         JLabel[] labels = new JLabel[6];
         String[] names = {"a", "b", "c", "A", "B", "C"};
         for (int i = 0; i < 6; i++) {
             labels[i] = new JLabel(names[i] + ":");
             c.labels(i);
-            main_pnl.add(labels[i], c);
+            mainPnl.add(labels[i], c);
             entries[i] = new JTextField();
             c.entries(i);
-            main_pnl.add(entries[i], c);
+            mainPnl.add(entries[i], c);
         }
         // Go button
-        c.go_btn();
-        go_btn.addActionListener(this);
-        add(go_btn, c);
+        c.goBtn();
+        goBtn.addActionListener(e -> {
+            if (e.getSource() == goBtn) {
+                update();
+            }
+        });
+        add(goBtn, c);
         // Finalise layout
-        bottom_pnl.add(main_pnl);
-        bottom_pnl.add(draw_pnl);
-        c.top_pnl();
-        add(top_pnl, c);
-        c.bottom_pnl();
-        add(bottom_pnl, c);
+        bottomPnl.add(mainPnl);
+        bottomPnl.add(panel);
+        c.topPnl();
+        add(topPnl, c);
+        c.bottomPnl();
+        add(bottomPnl, c);
     }
 
     public void update() {
         // Convert text box contents to double, validate input, and set known values for drawing class
         int total = 0;
-        boolean got_side = false;
+        boolean gotSide = false;
         double[] values = new double[6];
         for (int i = 0; i < 6; i++) {
             // Convert input values to double
             if (!entries[i].getText().equals("")) values[i] = Double.parseDouble(entries[i].getText());
             // Set known values for drawing class
-            draw_pnl.set(i, values[i]);
+            panel.set(i, values[i]);
             // Input validation
             if (values[i] != 0) {
                 total++;
-                if (i < 3) got_side = true;
+                if (i < 3) gotSide = true;
             }
         }
         // Complete validation
-        String error_text = "";
+        String errorText = "";
         if (total != 3) {
-            error_text += "Please provide 3 values; you have given " + total + ".";
+            errorText += "Please provide 3 values; you have given " + total + ".";
         }
-        if (!got_side) {
-            if (!error_text.equals("")) error_text += " ";
-            error_text += "Make sure at least one value is a side length.";
+        if (!gotSide) {
+            if (!errorText.equals("")) errorText += " ";
+            errorText += "Make sure at least one value is a side length.";
         }
-        if (!error_text.equals("")) {
-            JOptionPane.showMessageDialog(this, error_text, "Invalid input", JOptionPane.ERROR_MESSAGE);
+        if (!errorText.equals("")) {
+            JOptionPane.showMessageDialog(this, errorText, "Invalid input", JOptionPane.ERROR_MESSAGE);
             return;
         }
         // Do it three times so all values can be calculated
         for (int i = 0; i < 3; i++) {
             // SINE RULE
             // Input combinations that work, in the format: {a, A, b or B}
-            int[][] sine_rule_combos = {{0, 3, 1}, {0, 3, 2}, {1, 4, 0}, {1, 4, 2}, {2, 5, 0}, {2, 5, 1}, {0, 3, 4}, {0, 3, 5}, {1, 4, 3}, {1, 4, 5}, {2, 5, 3}, {2, 5, 4}};
+            int[][] sineRuleCombos = {{0, 3, 1}, {0, 3, 2}, {1, 4, 0}, {1, 4, 2}, {2, 5, 0}, {2, 5, 1}, {0, 3, 4}, {0, 3, 5}, {1, 4, 3}, {1, 4, 5}, {2, 5, 3}, {2, 5, 4}};
             // For each combination:
-            combos_loop:
-            for (int[] combo : sine_rule_combos) {
+            combosLoop:
+            for (int[] combo : sineRuleCombos) {
                 // Check if it applies
                 for (int j = 0; j < 3; j++) {
-                    if (values[combo[j]] == 0) continue combos_loop;
+                    if (values[combo[j]] == 0) continue combosLoop;
                 }
                 // What are we calculating
                 if (combo[2] < 3) {
@@ -93,7 +92,7 @@ public class Triangles extends JPanel implements ActionListener {
                     // Find an angle: asin(sin(A) / a * b)
                     double answer = Math.toDegrees(Math.asin(sin(values[combo[1]]) / values[combo[0]] * values[combo[2]]));
                     answer = Math.round(answer * 100) / 100.0;
-                    draw_pnl.set(combo[2] + 3, answer);
+                    panel.set(combo[2] + 3, answer);
                     entries[combo[2] + 3].setText(String.valueOf(answer));
                     values[combo[2] + 3] = answer;
                 } else {
@@ -101,20 +100,20 @@ public class Triangles extends JPanel implements ActionListener {
                     // Find a side: a / sin(A) * sin(B)
                     double answer = values[combo[0]] / sin(values[combo[1]]) * sin(values[combo[2]]);
                     answer = Math.round(answer * 100) / 100.0;
-                    draw_pnl.set(combo[2] - 3, answer);
+                    panel.set(combo[2] - 3, answer);
                     entries[combo[2] - 3].setText(String.valueOf(answer));
                     values[combo[2] - 3] = answer;
                 }
             }
-            // COSINE RULE - Finding a
+            // COSINE RULE - Finding "a"
             // Input combinations that work, in the format: {b, c, A}
-            int[][] cosine_rule_combos = {{0, 1, 5}, {0, 2, 4}, {1, 2, 3}};
+            int[][] cosineRuleCombos = {{0, 1, 5}, {0, 2, 4}, {1, 2, 3}};
             // For each combination:
-            combos_loop:
-            for (int[] combo : cosine_rule_combos) {
+            combosLoop:
+            for (int[] combo : cosineRuleCombos) {
                 // Check if it applies
                 for (int j = 0; j < 3; j++) {
-                    if (values[combo[j]] == 0) continue combos_loop;
+                    if (values[combo[j]] == 0) continue combosLoop;
                 }
                 System.out.println("Using cosine rule to calculate " + (combo[2] - 3));
                 // sqrt(b^2 + c^2 - 2bc * cos(A))
@@ -123,19 +122,19 @@ public class Triangles extends JPanel implements ActionListener {
                 double A = values[combo[2]];
                 double answer = Math.sqrt(Math.pow(b, 2) + Math.pow(c, 2) - 2 * b * c * cos(A));
                 answer = Math.round(answer * 100) / 100.0;
-                draw_pnl.set(combo[2] - 3, answer);
+                panel.set(combo[2] - 3, answer);
                 entries[combo[2] - 3].setText(String.valueOf(answer));
                 values[combo[2] - 3] = answer;
             }
-            // COSINE RULE - Finding A
+            // COSINE RULE - Finding "A"
             // Input combinations that work, in the format: {a, b, c}
-            cosine_rule_combos = new int[][]{{0, 1, 2}, {0, 2, 1}, {1, 0, 2}, {1, 2, 0}, {2, 0, 1}, {2, 1, 0}};
+            cosineRuleCombos = new int[][]{{0, 1, 2}, {0, 2, 1}, {1, 0, 2}, {1, 2, 0}, {2, 0, 1}, {2, 1, 0}};
             // For each combination
-            combos_loop:
-            for (int[] combo : cosine_rule_combos) {
+            combosLoop:
+            for (int[] combo : cosineRuleCombos) {
                 // Check if it applies
                 for (int j = 0; j < 3; j++) {
-                    if (values[combo[j]] == 0) continue combos_loop;
+                    if (values[combo[j]] == 0) continue combosLoop;
                 }
                 System.out.println("Using cosine rule to calculate " + (combo[0] + 3));
                 // acos((b^2 + c^2 - a^2) / 2bc)
@@ -144,13 +143,13 @@ public class Triangles extends JPanel implements ActionListener {
                 double c = values[combo[2]];
                 double answer = Math.toDegrees(Math.acos((Math.pow(b, 2) + Math.pow(c, 2) - Math.pow(a, 2)) / (2 * b * c)));
                 answer = Math.round(answer * 100) / 100.0;
-                draw_pnl.set(combo[0] + 3, answer);
+                panel.set(combo[0] + 3, answer);
                 entries[combo[0] + 3].setText(String.valueOf(answer));
                 values[combo[0] + 3] = answer;
             }
         }
         // Redraw the diagram (not currently working)
-        draw_pnl.repaint();
+        panel.repaint();
     }
 
     public static double sin(double angle) {
@@ -161,10 +160,57 @@ public class Triangles extends JPanel implements ActionListener {
         return Math.cos(Math.toRadians(angle));
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == go_btn) {
-            update();
+    private static class Constraints extends GridBagConstraints {
+
+        public void topPnl() {
+            gridx = 1;
+            gridy = 1;
+            gridwidth = 1;
+            fill = BOTH;
+            weighty = 0.3;
+            weightx = 1;
+            insets = new Insets(0, 0, 0, 0);
         }
+
+        public void bottomPnl() {
+            gridx = 1;
+            gridy = 2;
+            gridwidth = 1;
+            fill = BOTH;
+            weighty = 0.7;
+            weightx = 1;
+            insets = new Insets(0, 0, 0, 0);
+        }
+
+        public void labels(int index) {
+            gridx = 1;
+            gridy = index;
+            gridwidth = 1;
+            fill = NONE;
+            weightx = 0;
+            weighty = 0.5;
+            insets = new Insets(0, 5, 0, 5);
+        }
+
+        public void entries(int index) {
+            gridx = 2;
+            gridy = index;
+            gridwidth = 1;
+            fill = HORIZONTAL;
+            weightx = 1;
+            weighty = 0.5;
+            insets = new Insets(0, 0, 0, 0);
+        }
+
+        public void goBtn() {
+            gridx = 1;
+            gridy = 7;
+            gridwidth = 1;
+            fill = BOTH;
+            weightx = 0.5;
+            weighty = 0.5;
+            insets = new Insets(5, 5, 5, 5);
+        }
+
     }
 }
